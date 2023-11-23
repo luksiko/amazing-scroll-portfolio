@@ -76,6 +76,13 @@ html, body {
 	opacity: 1;
 }
 
+@media (max-width: 768px) {
+	.pico-content {
+		max-width: 90% !important;
+		width: max-content !important;
+	}
+}
+
 .pico-content img {
 	max-width: 100%;
 }
@@ -83,6 +90,7 @@ html, body {
 .pico-close {
 	background-color: rgba(0, 0, 0, .7) !important;
 	color: #fff;
+	border: none!important;
 }
 	/* Работает в Firefox */
 * {
