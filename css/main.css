@@ -22,6 +22,7 @@ html, body {
 	background-image: url(../img/bg.jpg);
 	background-size: cover;
 	background-position: center;
+	justify-content: center;
 }
 
 .slider {
@@ -71,6 +72,8 @@ html, body {
 	background-color: rgba(0, 0, 0, .5) !important;
 	max-width: 50%;
 	padding: 0 !important;
+	transition: all var(--transition);
+	opacity: 1;
 }
 
 .pico-content img {
