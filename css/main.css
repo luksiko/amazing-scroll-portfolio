@@ -7,7 +7,20 @@
 :root {
 	--index: calc(1vw + 1vh);
 	--transition: 1.25s cubic-bezier(.2, .6, 0, 1);
+	--color-bg-light: #ffffff;
+	--color-bg-dark: #232226;
+}
 
+[data-theme="light"] {
+	--color-bg: var(--color-bg-light);
+	--color-fg: var(--color-bg-dark);
+	--bg-image: url(../img/bg-light.jpg);
+}
+
+[data-theme="dark"] {
+	--color-bg: #232226;
+	--color-fg: #ffffff;
+	--bg-image: url(../img/bg.jpg);
 }
 
 html, body {
@@ -15,14 +28,44 @@ html, body {
 	overflow: hidden;
 }
 
+
+/* Работает в Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, .6) #232226;
+}
+
+/* Работает в Chrome, Edge и Safari */
+*::-webkit-scrollbar {
+	width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+	background: #232226;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, .6);
+	border-radius: 20px;
+	border: 3px solid #232226;
+}
+
+
+.header-wrapper {
+	height: calc(var(--index) * 2);
+	background-color: var(--color-bg); ;
+}
+
 .main-wrapper {
 	height: 100%;
 	display: flex;
 	gap: var(--index);
-	background-image: url(../img/bg.jpg);
 	background-size: cover;
 	background-position: center;
 	justify-content: center;
+	overflow: hidden;
+	background-image: var(--bg-image);
+	background-color: var(--color-bg);
 }
 
 .slider {
@@ -69,12 +112,90 @@ html, body {
 }
 
 .pico-content {
-	background-color: rgba(0, 0, 0, .5) !important;
+	background-color: var(--color-bg).05 !important;
 	max-width: 50%;
 	padding: 0 !important;
 	transition: all var(--transition);
 	opacity: 1;
 }
+
+.pico-content img {
+	max-width: 100%;
+}
+
+.pico-close {
+	background-color: var(--color-bg) !important;
+	color: var(--color-fg) !important;
+	border: none !important;
+}
+
+.pico-close:focus {
+	outline: none;
+}
+
+.theme-switch-wrapper {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	gap: 10px;
+}
+.theme-switch-wrapper em {
+	margin-left: 10px;
+	font-size: 1rem;
+	color: var(--color-fg);
+}
+
+.theme-switch {
+	display: inline-block;
+	height: calc(var(--index) * 1.5);
+	position: relative;
+	width: calc(var(--index) * 3.3);
+}
+
+.theme-switch input {
+	display:none;
+}
+
+.toggle-slider {
+	background-color: #ccc;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: .4s;
+}
+
+.toggle-slider:before {
+	background-color: var(--color-bg);
+	bottom: calc(var(--index) * 0.25);
+	content: "";
+	height: calc(var(--index) * 1.1);
+	left: 4px;
+	position: absolute;
+	transition: .4s;
+	width: calc(var(--index) * 1.1);
+}
+
+input:checked + .toggle-slider {
+	background-color: #66bb6a;
+}
+
+input:checked + .toggle-slider:before {
+	transform: translateX(26px);
+}
+
+.toggle-slider.round {
+	border-radius: 34px;
+}
+
+.toggle-slider.round:before {
+	border-radius: 50%;
+}
+
+
 
 @media (max-width: 768px) {
 	.pico-content {
@@ -83,32 +204,7 @@ html, body {
 	}
 }
 
-.pico-content img {
-	max-width: 100%;
-}
+@media (prefers-color-scheme: dark){
 
-.pico-close {
-	background-color: rgba(0, 0, 0, .7) !important;
-	color: #fff;
-	border: none!important;
-}
-	/* Работает в Firefox */
-* {
-	scrollbar-width: thin;
-	scrollbar-color: rgba(0, 0, 0, .6) #232226;
-}
-
-/* Работает в Chrome, Edge и Safari */
-*::-webkit-scrollbar {
-	width: 12px;
-}
-
-*::-webkit-scrollbar-track {
-	background: #232226;
-}
-
-*::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, .6);
-	border-radius: 20px;
-	border: 3px solid #232226;
+	
 }
